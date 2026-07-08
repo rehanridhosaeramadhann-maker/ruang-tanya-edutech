@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edutech Indonesia — Kelompok 5 Kewirausahaan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #16213E;
+    --ink-soft: #223159;
+    --cream: #F7F3E8;
+    --paper: #FFFDF7;
+    --amber: #F2B134;
+    --amber-dark: #A8720B;
+    --teal: #2F9C8F;
+    --teal-dark: #185C54;
+    --graphite: #2B2B2B;
+    --line: #D9D2BE;
+    --ruang: #E8734A;
+    --zenius: #4E6BE0;
+    --quipper: #2F9C8F;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--graphite);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;margin:0;color:var(--ink);}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--teal-dark);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--teal-dark);display:inline-block;}
+
+  .mark{position:relative;display:inline;white-space:nowrap;}
+  .mark span.hl{
+    position:absolute;left:-3px;right:-3px;bottom:2px;height:0.5em;
+    background:var(--amber);
+    z-index:-1;
+    transform:scaleX(0);
+    transform-origin:left;
+    animation:draw 0.7s ease-out forwards;
+    animation-delay:.15s;
+    opacity:.85;
+  }
+  @keyframes draw{to{transform:scaleX(1);}}
+
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,243,232,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1040px;margin:0 auto;padding:16px 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+  }
+  .brand{
+    font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:var(--ink);
+    display:flex;align-items:center;gap:8px;flex-shrink:0;white-space:nowrap;
+  }
+  .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);}
+  nav.links{display:flex;flex-wrap:nowrap;gap:clamp(12px,2vw,26px);}
+  nav.links a{
+    color:var(--ink-soft);text-decoration:none;font-size:13.5px;font-weight:500;
+    font-family:'IBM Plex Mono',monospace;
+    white-space:nowrap;
+  }
+  nav.links a:hover{color:var(--teal-dark);}
+
+  .hero{padding:96px 0 72px;position:relative;overflow:hidden;}
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background-image:repeating-linear-gradient(180deg, transparent 0 38px, var(--line) 38px 39px);
+    opacity:.35; pointer-events:none;
+  }
+  .hero-inner{position:relative;z-index:1;max-width:720px;}
+  .hero .eyebrow{margin-bottom:22px;}
+  .hero h1{font-size:clamp(38px,6vw,58px);line-height:1.08;letter-spacing:-.01em;}
+  .hero p.lead{
+    margin-top:22px;font-size:18px;color:var(--ink-soft);max-width:560px;
+  }
+  .hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+    border:1px solid var(--ink);border-radius:100px;padding:6px 14px;color:var(--ink);
+  }
+  .tag.filled{background:var(--ink);color:var(--cream);}
+
+  section{padding:76px 0;border-top:1px solid var(--line);}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(26px,4vw,34px);margin-top:14px;}
+  .section-head p{color:var(--ink-soft);margin-top:14px;font-size:16px;}
+
+  .team-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:26px;
+  }
+  .note{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:22px 20px 20px;
+    position:relative;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .note:nth-child(1){transform:rotate(-1.4deg);}
+  .note:nth-child(2){transform:rotate(1.1deg);}
+  .note:nth-child(3){transform:rotate(-0.6deg);}
+  .note:nth-child(4){transform:rotate(1.6deg);}
+  .note::before{
+    content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-3deg);
+    width:34px;height:16px;background:rgba(242,177,52,0.55);border:1px solid rgba(168,114,11,.3);
+  }
+  .note .num{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal-dark);
+  }
+  .note h3{font-size:17px;margin-top:10px;line-height:1.3;}
+  .note .npm{
+    margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:13px;
+    color:var(--ink-soft);
+  }
+  .note .npm.empty{color:var(--amber-dark);}
+
+  .flow{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start;}
+  .flow-copy p{color:var(--graphite);font-size:15.5px;margin:0 0 16px;}
+  .flow-copy strong{color:var(--ink);}
+  .flow-list{display:flex;flex-direction:column;gap:16px;}
+  .flow-item{
+    background:var(--paper);border:1px solid var(--line);border-radius:10px;
+    padding:18px 20px;
+  }
+  .flow-item .k{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--teal-dark);
+    text-transform:uppercase;letter-spacing:.08em;
+  }
+  .flow-item h4{font-family:'Fraunces',serif;font-size:16.5px;margin:6px 0 6px;color:var(--ink);font-weight:600;}
+  .flow-item p{margin:0;font-size:14px;color:var(--ink-soft);}
+
+  .platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .plat-card{
+    background:var(--ink);color:var(--cream);border-radius:14px;padding:26px 24px;
+    position:relative;overflow:hidden;
+  }
+  .plat-card .bar{position:absolute;top:0;left:0;right:0;height:6px;}
+  .plat-card[data-p="ruang"] .bar{background:var(--ruang);}
+  .plat-card[data-p="zenius"] .bar{background:var(--zenius);}
+  .plat-card[data-p="quipper"] .bar{background:var(--quipper);}
+  .plat-card .icon{
+    width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:var(--ink);margin-bottom:16px;
+  }
+  .plat-card[data-p="ruang"] .icon{background:var(--ruang);}
+  .plat-card[data-p="zenius"] .icon{background:var(--zenius);}
+  .plat-card[data-p="quipper"] .icon{background:var(--quipper);}
+  .plat-card h3{color:var(--cream);font-size:19px;}
+  .plat-card p{font-size:13.5px;color:#C9CEDE;margin-top:10px;}
+
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .rev-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;
+  }
+  .rev-card .n{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--amber-dark);
+  }
+  .rev-card h4{font-family:'Fraunces',serif;font-size:17px;margin:8px 0 8px;color:var(--ink);font-weight:600;}
+  .rev-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+
+  /* CARI JURUSAN */
+  .quiz-shell{
+    background:var(--ink);border-radius:18px;padding:44px 40px;color:var(--cream);
+  }
+  .quiz-top{max-width:640px;margin-bottom:32px;}
+  .quiz-top .eyebrow{color:var(--amber);}
+  .quiz-top .eyebrow::before{background:var(--amber);}
+  .quiz-top h2{color:var(--cream);}
+  .quiz-top p{color:#B9C0D6;margin-top:12px;font-size:15.5px;}
+  .level-toggle{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
+  .lvl-btn{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;color:#C9CEDE;
+    background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;padding:9px 18px;cursor:pointer;
+  }
+  .lvl-btn.active{background:var(--amber);color:#3A2603;border-color:var(--amber);}
+  .quiz-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 28px;margin-bottom:8px;}
+  .q-block{
+    background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);
+    border-radius:12px;padding:18px 18px 14px;
+  }
+  .q-block .qn{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--amber);
+    letter-spacing:.06em;text-transform:uppercase;
+  }
+  .q-block .qt{font-size:15px;font-weight:500;color:var(--cream);margin:6px 0 12px;}
+  .q-opts{display:flex;flex-direction:column;gap:8px;}
+  .q-opts label{
+    display:flex;align-items:center;gap:9px;font-size:13.5px;color:#C9CEDE;
+    cursor:pointer;padding:6px 8px;border-radius:7px;
+  }
+  .q-opts label:hover{background:rgba(255,255,255,0.05);}
+  .q-opts input{accent-color:var(--amber);width:15px;height:15px;flex:none;}
+  .quiz-cta{
+    display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.14);
+  }
+  .quiz-hint{font-size:13px;color:#8B93AE;font-family:'IBM Plex Mono',monospace;}
+  #quizBtn{
+    font-family:'IBM Plex Mono',monospace;font-size:13.5px;font-weight:500;
+    background:var(--amber);color:#3A2603;border:none;border-radius:100px;
+    padding:13px 26px;cursor:pointer;letter-spacing:.02em;
+  }
+  #quizBtn:hover{background:#F6C158;}
+  #quizResult{
+    margin-top:28px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.14);
+    display:none;
+  }
+  #quizResult .rlabel{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--teal);
+    text-transform:uppercase;letter-spacing:.08em;
+  }
+  #quizResult h3{color:var(--cream);font-size:24px;margin:8px 0 6px;}
+  #quizResult .rdesc{color:#C9CEDE;font-size:14.5px;max-width:600px;margin-bottom:18px;}
+  .r-chips{display:flex;flex-wrap:wrap;gap:9px;}
+  .r-chip{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink);
+    background:var(--teal);padding:7px 14px;border-radius:100px;
+  }
+
+  /* TANYA-TANYA CHAT */
+  .chat-shell{
+    background:var(--ink);border-radius:18px;padding:44px 40px;color:var(--cream);
+  }
+  .chat-top{max-width:640px;margin-bottom:28px;}
+  .chat-top .eyebrow{color:var(--amber);}
+  .chat-top .eyebrow::before{background:var(--amber);}
+  .chat-top h2{color:var(--cream);}
+  .chat-top p{color:#B9C0D6;margin-top:12px;font-size:15.5px;}
+  .chat-window{
+    display:flex;flex-direction:column;gap:12px;
+    max-height:380px;overflow-y:auto;
+    padding:6px 4px 10px;margin-bottom:16px;
+  }
+  .msg{
+    max-width:78%;padding:12px 16px;border-radius:14px;font-size:14.5px;line-height:1.55;
+  }
+  .msg.bot{
+    align-self:flex-start;background:rgba(255,255,255,0.06);color:#E7EAF5;
+    border-bottom-left-radius:4px;
+  }
+  .msg.user{
+    align-self:flex-end;background:var(--amber);color:#3A2603;
+    border-bottom-right-radius:4px;
+  }
+  .msg.bot.typing{display:flex;align-items:center;gap:5px;padding:14px 16px;}
+  .msg.bot.typing .dot{
+    width:6px;height:6px;border-radius:50%;background:#B9C0D6;
+    animation:typingBounce 1.1s infinite ease-in-out;
+  }
+  .msg.bot.typing .dot:nth-child(2){animation-delay:.15s;}
+  .msg.bot.typing .dot:nth-child(3){animation-delay:.3s;}
+  @keyframes typingBounce{
+    0%,60%,100%{transform:translateY(0);opacity:.5;}
+    30%{transform:translateY(-4px);opacity:1;}
+  }
+  .chat-quick{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
+  .qchip{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal);
+    background:rgba(47,156,143,0.14);border:1px solid rgba(47,156,143,0.4);
+    padding:7px 13px;border-radius:100px;cursor:pointer;
+  }
+  .qchip:hover{background:rgba(47,156,143,0.24);}
+  .chat-input-row{
+    display:flex;gap:10px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.14);
+  }
+  .chat-input-row input{
+    flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);
+    border-radius:100px;padding:12px 18px;color:var(--cream);font-family:'Inter',sans-serif;
+    font-size:14px;outline:none;
+  }
+  .chat-input-row input::placeholder{color:#8B93AE;}
+  .chat-input-row input:focus{border-color:var(--amber);}
+  .chat-input-row button{
+    font-family:'IBM Plex Mono',monospace;font-size:13.5px;font-weight:500;
+    background:var(--amber);color:#3A2603;border:none;border-radius:100px;
+    padding:0 24px;cursor:pointer;
+  }
+  .chat-input-row button:hover{background:#F6C158;}
+
+  /* KONTEN BELAJAR */
+  .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .feature-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;
+    padding:22px 18px;position:relative;overflow:hidden;
+  }
+  .feature-card .fbar{position:absolute;top:0;left:0;right:0;height:5px;}
+  .feature-card[data-f="video"] .fbar{background:var(--ruang);}
+  .feature-card[data-f="rangkuman"] .fbar{background:var(--amber);}
+  .feature-card[data-f="latihan"] .fbar{background:var(--teal);}
+  .feature-card[data-f="tryout"] .fbar{background:var(--zenius);}
+  .feature-card .fnum{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);margin-top:6px;}
+  .feature-card h4{font-family:'Fraunces',serif;font-size:16.5px;margin:8px 0 8px;color:var(--ink);font-weight:600;}
+  .feature-card p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+  .access-strip{
+    margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    background:var(--ink);color:var(--cream);border-radius:12px;padding:20px 24px;
+  }
+  .access-strip .badges{display:flex;gap:8px;flex-wrap:wrap;}
+  .access-strip .badge{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    border:1px solid rgba(255,255,255,0.3);border-radius:100px;padding:6px 13px;color:var(--cream);
+  }
+  .access-strip p{margin:0;font-size:14px;color:#C9CEDE;flex:1;min-width:220px;}
+
+  footer{
+    background:var(--ink);color:#B9C0D6;padding:44px 0;
+  }
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  footer .brand-f{font-family:'Fraunces',serif;color:var(--cream);font-size:16px;}
+  footer p{margin:0;font-size:13px;}
+
+  @media (max-width:900px){
+    nav.links{display:none;}
+  }
+  @media (max-width:820px){
+    .team-grid{grid-template-columns:repeat(2,1fr);}
+    .flow{grid-template-columns:1fr;}
+    .platform-grid,.rev-grid{grid-template-columns:1fr;}
+    .feature-grid{grid-template-columns:1fr 1fr;}
+    .quiz-grid{grid-template-columns:1fr;}
+    .quiz-shell,.chat-shell{padding:32px 22px;}
+    .msg{max-width:88%;}
+    nav.links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span>Kelompok 5 — Kewirausahaan</div>
+    <nav class="links">
+      <a href="#tim">Tim</a>
+      <a href="#cara-kerja">Cara kerja</a>
+      <a href="#konten">Konten belajar</a>
+      <a href="#platform">Platform</a>
+      <a href="#keuntungan">Keuntungan</a>
+      <a href="#cari-jurusan">Cari jurusan</a>
+      <a href="#tanya">Tanya-tanya</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Sektor · Edutech</div>
+    <h1>Belajar digital, <span class="mark">bisnis nyata<span class="hl"></span></span>.</h1>
+    <p class="lead">Studi model bisnis tiga startup edutech terbesar di Indonesia — Ruangguru, Zenius, dan Quipper — dan bagaimana teknologi mengubah cara siswa belajar sekaligus cara platform menghasilkan uang.</p>
+    <div class="hero-tags">
+      <span class="tag filled">Ruangguru</span>
+      <span class="tag filled">Zenius</span>
+      <span class="tag filled">Quipper</span>
+      <span class="tag">Subscription model</span>
+    </div>
+  </div>
+</section>
+
+<section id="tim">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Anggota</div>
+      <h2>Tim di balik studi ini</h2>
+      <p>Empat mahasiswa yang menyusun analisis sektor edutech ini untuk mata kuliah Kewirausahaan.</p>
+    </div>
+    <div class="team-grid">
+      <div class="note">
+        <div class="num">01</div>
+        <h3>Chytra Devvynda Riany</h3>
+        <div class="npm">NPM 24430061</div>
+      </div>
+      <div class="note">
+        <div class="num">02</div>
+        <h3>Cindy Dewi Ayu Aprilia</h3>
+        <div class="npm">NPM 24430078</div>
+      </div>
+      <div class="note">
+        <div class="num">03</div>
+        <h3>Egi Mohamat Tirta</h3>
+        <div class="npm">NPM 24430089</div>
+      </div>
+      <div class="note">
+        <div class="num">04</div>
+        <h3>Rehan Ridho Sae Ramadhan</h3>
+        <div class="npm">NPM 24430072</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cara-kerja">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Model operasional</div>
+      <h2>Bagaimana cara kerjanya</h2>
+    </div>
+    <div class="flow">
+      <div class="flow-copy">
+        <p><strong>Ruangguru, Zenius, dan Quipper</strong> pada dasarnya memiliki konsep yang sama: platform pendidikan berbasis teknologi yang menghubungkan siswa dengan materi belajar secara digital. Ketiganya menyediakan video pembelajaran, rangkuman materi, latihan soal, hingga tryout yang dirancang sesuai kurikulum yang berlaku, dan dapat diakses lewat aplikasi maupun website — fleksibel tanpa terikat waktu dan tempat.</p>
+        <p>Dalam operasionalnya, ketiga startup ini memakai sistem <strong>langganan (subscription)</strong> untuk membuka fitur premium. Mereka juga memanfaatkan algoritma dan analisis data untuk personalisasi belajar: merekomendasikan materi sesuai kemampuan siswa, melacak perkembangan, dan memberi evaluasi berkala. Kerja sama dengan guru, tutor, dan sekolah memperluas jangkauan layanan lewat kelas online, bimbingan belajar, serta sistem penugasan dan monitoring.</p>
+      </div>
+      <div class="flow-list">
+        <div class="flow-item">
+          <div class="k">Konten</div>
+          <h4>Materi sesuai kurikulum</h4>
+          <p>Video, rangkuman, latihan soal, dan tryout yang mengikuti kurikulum yang berlaku.</p>
+        </div>
+        <div class="flow-item">
+          <div class="k">Teknologi</div>
+          <h4>Personalisasi lewat data</h4>
+          <p>Algoritma merekomendasikan materi dan melacak progres belajar tiap siswa.</p>
+        </div>
+        <div class="flow-item">
+          <div class="k">Kemitraan</div>
+          <h4>Guru, tutor, dan sekolah</h4>
+          <p>Kelas online, bimbingan belajar, hingga sistem monitoring siswa bersama institusi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="konten">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Isi platform</div>
+      <h2>Apa yang bisa diakses siswa</h2>
+      <p>Ketiganya menyediakan konten belajar yang lengkap — dirancang mengikuti kurikulum yang berlaku, dan bisa diakses lewat aplikasi maupun website.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card" data-f="video">
+        <div class="fbar"></div>
+        <div class="fnum">01</div>
+        <h4>Video pembelajaran</h4>
+        <p>Materi dijelaskan lewat video yang bisa ditonton ulang kapan saja, sesuai kecepatan belajar masing-masing siswa.</p>
+      </div>
+      <div class="feature-card" data-f="rangkuman">
+        <div class="fbar"></div>
+        <div class="fnum">02</div>
+        <h4>Rangkuman materi</h4>
+        <p>Poin-poin penting tiap bab disusun ringkas, memudahkan siswa mengulang pelajaran tanpa harus baca ulang semuanya.</p>
+      </div>
+      <div class="feature-card" data-f="latihan">
+        <div class="fbar"></div>
+        <div class="fnum">03</div>
+        <h4>Latihan soal</h4>
+        <p>Bank soal untuk mengasah pemahaman, lengkap dengan pembahasan agar siswa tahu di mana letak kesalahannya.</p>
+      </div>
+      <div class="feature-card" data-f="tryout">
+        <div class="fbar"></div>
+        <div class="fnum">04</div>
+        <h4>Tryout</h4>
+        <p>Simulasi ujian yang meniru format soal sebenarnya, membantu siswa mengukur kesiapan sebelum ujian sesungguhnya.</p>
+      </div>
+    </div>
+    <div class="access-strip">
+      <div class="badges">
+        <span class="badge">Aplikasi</span>
+        <span class="badge">Website</span>
+      </div>
+      <p>Semua konten dirancang sesuai kurikulum yang berlaku dan dapat diakses lewat aplikasi maupun website — fleksibel, tanpa terikat waktu dan tempat, baik belajar mandiri maupun dengan bimbingan.</p>
+    </div>
+  </div>
+</section>
+
+<section id="platform">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Tiga pemain utama</div>
+      <h2>Platform yang dibahas</h2>
+      <p>Ketiganya menggabungkan teknologi, konten pendidikan, dan model bisnis digital untuk menciptakan sistem belajar yang modern, interaktif, dan efisien.</p>
+    </div>
+    <div class="platform-grid">
+      <div class="plat-card" data-p="ruang">
+        <div class="bar"></div>
+        <div class="icon">R</div>
+        <h3>Ruangguru</h3>
+        <p>Bimbingan belajar digital dengan kelas online, video pembelajaran, dan layanan tutor untuk siswa dan sekolah.</p>
+      </div>
+      <div class="plat-card" data-p="zenius">
+        <div class="bar"></div>
+        <div class="icon">Z</div>
+        <h3>Zenius</h3>
+        <p>Konten pembelajaran berbasis konsep dengan latihan soal dan tryout mengikuti kurikulum yang berlaku.</p>
+      </div>
+      <div class="plat-card" data-p="quipper">
+        <div class="bar"></div>
+        <div class="icon">Q</div>
+        <h3>Quipper</h3>
+        <p>Platform belajar yang juga menjalin kerja sama sistem penugasan dan monitoring bersama sekolah.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="keuntungan">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Model pendapatan</div>
+      <h2>Cara mendapatkan keuntungan</h2>
+      <p>Sumber utama keuntungan berasal dari sistem berlangganan, ditambah layanan tambahan dan kerja sama institusi.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card">
+        <div class="n">01 · subscription</div>
+        <h4>Biaya langganan siswa</h4>
+        <p>Siswa membayar biaya bulanan atau tahunan untuk mengakses konten premium seperti video, latihan soal, dan tryout. Semakin banyak pengguna berlangganan, semakin besar pendapatan.</p>
+      </div>
+      <div class="rev-card">
+        <div class="n">02 · layanan tambahan</div>
+        <h4>Kelas dan program khusus</h4>
+        <p>Kelas intensif, bimbingan belajar, atau program persiapan ujian sering dijual dengan harga tersendiri di luar paket utama.</p>
+      </div>
+      <div class="rev-card">
+        <div class="n">03 · kerja sama institusi</div>
+        <h4>Kemitraan sekolah dan pemerintah</h4>
+        <p>Platform menyediakan sistem pembelajaran digital atau pelatihan yang dibayar oleh institusi, menjangkau pengguna dalam skala besar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cari-jurusan">
+  <div class="wrap">
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <div class="eyebrow">Untuk siswa & orang tua</div>
+        <h2 id="quizTitle">Bingung mau ambil jurusan apa?</h2>
+        <p id="quizDesc">Ini contoh fitur yang biasa ditemukan di platform edutech seperti Ruangguru, Zenius, dan Quipper: kuis singkat untuk membantu siswa menemukan jurusan yang cocok berdasarkan minat, bukan ikut-ikutan teman. Pilih dulu kamu lagi di tahap yang mana, lalu jawab 5 pertanyaan berikut.</p>
+      </div>
+
+      <div class="level-toggle" id="levelToggle">
+        <button type="button" class="lvl-btn active" data-level="kuliah" onclick="pilihJenjang('kuliah')">Mau kuliah, cari jurusan</button>
+        <button type="button" class="lvl-btn" data-level="sma" onclick="pilihJenjang('sma')">Mau masuk SMA/SMK</button>
+      </div>
+
+      <div class="quiz-grid">
+        <div class="q-block">
+          <div class="qn">01</div>
+          <div class="qt">Mata pelajaran apa yang paling kamu sukai?</div>
+          <div class="q-opts">
+            <label><input type="radio" name="q1" value="saintek">Matematika & Fisika</label>
+            <label><input type="radio" name="q1" value="kesehatan">Biologi & Kimia</label>
+            <label><input type="radio" name="q1" value="soshum">Ekonomi & Sejarah</label>
+            <label><input type="radio" name="q1" value="bahasa">Bahasa Indonesia & Inggris</label>
+            <label><input type="radio" name="q1" value="seni">Seni Budaya & Prakarya</label>
+            <label><input type="radio" name="q1" value="tekno">TIK & Informatika</label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="qn">02</div>
+          <div class="qt">Kegiatan apa yang bikin kamu betah berjam-jam?</div>
+          <div class="q-opts">
+            <label><input type="radio" name="q2" value="saintek">Memecahkan soal logika/hitung-hitungan</label>
+            <label><input type="radio" name="q2" value="tekno">Ngoprek aplikasi, gadget, atau game</label>
+            <label><input type="radio" name="q2" value="seni">Menggambar, desain, atau bikin konten</label>
+            <label><input type="radio" name="q2" value="bahasa">Menulis, membaca, atau public speaking</label>
+            <label><input type="radio" name="q2" value="soshum">Diskusi isu sosial, bisnis, atau berita</label>
+            <label><input type="radio" name="q2" value="kesehatan">Merawat orang, hewan, atau tanaman</label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="qn">03</div>
+          <div class="qt">Kalau kerja kelompok, kamu biasanya jadi...</div>
+          <div class="q-opts">
+            <label><input type="radio" name="q3" value="soshum">Yang mimpin & atur strategi</label>
+            <label><input type="radio" name="q3" value="tekno">Yang urus data & teknis</label>
+            <label><input type="radio" name="q3" value="seni">Yang bikin tampilan & presentasi menarik</label>
+            <label><input type="radio" name="q3" value="bahasa">Yang nulis laporan & presentasi ke depan</label>
+            <label><input type="radio" name="q3" value="saintek">Yang hitung & analisis angkanya</label>
+            <label><input type="radio" name="q3" value="kesehatan">Yang paling peduli sama kondisi anggota tim</label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="qn">04</div>
+          <div class="qt">Lingkungan kerja impianmu nanti?</div>
+          <div class="q-opts">
+            <label><input type="radio" name="q4" value="tekno">Startup teknologi / kantor digital</label>
+            <label><input type="radio" name="q4" value="kesehatan">Rumah sakit / klinik / laboratorium</label>
+            <label><input type="radio" name="q4" value="saintek">Lab riset / proyek teknik / pabrik</label>
+            <label><input type="radio" name="q4" value="soshum">Kantor pemerintahan / perusahaan / bank</label>
+            <label><input type="radio" name="q4" value="seni">Studio kreatif / agensi / production house</label>
+            <label><input type="radio" name="q4" value="bahasa">Media, penerbitan, atau kerja lintas negara</label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="qn">05</div>
+          <div class="qt">Orang sering bilang kamu jago dalam hal...</div>
+          <div class="q-opts">
+            <label><input type="radio" name="q5" value="saintek">Logika dan angka</label>
+            <label><input type="radio" name="q5" value="bahasa">Ngomong dan menulis</label>
+            <label><input type="radio" name="q5" value="seni">Selera visual dan kreativitas</label>
+            <label><input type="radio" name="q5" value="soshum">Meyakinkan dan negosiasi</label>
+            <label><input type="radio" name="q5" value="tekno">Utak-atik sistem dan teknologi</label>
+            <label><input type="radio" name="q5" value="kesehatan">Sabar dan peduli sama orang lain</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-cta">
+        <span class="quiz-hint" id="quizHint">Jawab dulu kelima pertanyaan di atas.</span>
+        <button id="quizBtn" onclick="hitungJurusan()">Lihat rekomendasi jurusan</button>
+      </div>
+
+      <div id="quizResult">
+        <div class="rlabel">Rekomendasi buat kamu</div>
+        <h3 id="rTitle"></h3>
+        <p class="rdesc" id="rDesc"></p>
+        <div class="r-chips" id="rChips"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tanya">
+  <div class="wrap">
+    <div class="chat-shell">
+      <div class="chat-top">
+        <div class="eyebrow">Ruang tanya</div>
+        <h2>Masih ada yang mau ditanyain?</h2>
+        <p>Ketik pertanyaanmu soal jurusan SMA/SMK, jurusan kuliah, atau cara belajar di platform edutech — persis seperti kamu ngobrol di sini. Ini contoh fitur tanya-jawab yang biasa ada di aplikasi Ruangguru, Zenius, atau Quipper.</p>
+      </div>
+
+      <div class="chat-window" id="chatWindow">
+        <div class="msg bot">Halo! Aku bisa bantu jawab pertanyaan seputar jurusan kuliah dan belajar edutech. Coba tanya sesuatu, atau klik salah satu topik di bawah.</div>
+      </div>
+
+      <div class="chat-quick" id="chatQuick">
+        <span class="qchip" onclick="tanyaCepat('Gimana cara milih jurusan yang cocok?')">Cara milih jurusan</span>
+        <span class="qchip" onclick="tanyaCepat('Apa bedanya jurusan Saintek dan Soshum?')">Saintek vs Soshum</span>
+        <span class="qchip" onclick="tanyaCepat('Bedanya SMA sama SMK apa?')">SMA vs SMK</span>
+        <span class="qchip" onclick="tanyaCepat('Jurusan IT prospek kerjanya gimana?')">Prospek jurusan IT</span>
+        <span class="qchip" onclick="tanyaCepat('Aku masih bingung banget mau kuliah apa')">Masih bingung banget</span>
+      </div>
+
+      <div class="chat-input-row">
+        <input id="chatInput" type="text" placeholder="Tulis pertanyaanmu di sini..." onkeydown="if(event.key==='Enter'){kirimChat();}">
+        <button onclick="kirimChat()">Kirim</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-f">Kelompok 5 · Kewirausahaan</div>
+    <p>Studi sektor Edutech — Ruangguru, Zenius, Quipper</p>
+  </div>
+</footer>
+
+<script>
+  // FAQ statis dipakai sebagai fallback kalau panggilan AI gagal (mis. jaringan bermasalah)
+  const FAQ = [
+    { kw:["milih jurusan","pilih jurusan","cocok jurusan","cara milih"],
+      a:"Mulai dari tiga hal: mata pelajaran yang paling kamu kuasai, aktivitas yang bikin kamu betah lama-lama, dan gambaran pekerjaan yang kamu bayangkan 5-10 tahun lagi. Coba juga fitur 'Cari jurusan' di atas biar dapat gambaran rumpun ilmu yang cocok buatmu." },
+    { kw:["saintek","soshum","bedanya saintek","ipa ips"],
+      a:"Saintek (IPA) fokus ke logika, hitungan, dan sains — cocok kalau kamu suka matematika, fisika, atau biologi. Soshum (IPS) fokus ke manusia, masyarakat, dan sistem — cocok kalau kamu suka sejarah, ekonomi, atau diskusi sosial." },
+    { kw:["sma atau smk","sma smk","beda sma smk","pilih sma"],
+      a:"SMA lebih fokus ke persiapan akademik umum sebelum kuliah, dengan peminatan MIPA, IPS, atau Bahasa. SMK lebih fokus ke keterampilan praktik sesuai jurusan (misalnya TKJ, Akuntansi, atau Tata Boga) supaya siap kerja atau lanjut kuliah dengan bekal skill tertentu." },
+    { kw:["ruangguru","zenius","quipper","edutech","platform belajar"],
+      a:"Ruangguru, Zenius, dan Quipper itu platform belajar digital yang menyediakan video pembelajaran, latihan soal, dan tryout sesuai kurikulum." }
+  ];
+
+  function cariJawabanCadangan(pertanyaan){
+    const q = pertanyaan.toLowerCase();
+    let terbaik = null, skorTerbaik = 0;
+    FAQ.forEach(function(item){
+      let skor = 0;
+      item.kw.forEach(function(k){ if(q.indexOf(k) !== -1){ skor++; } });
+      if(skor > skorTerbaik){ skorTerbaik = skor; terbaik = item; }
+    });
+    if(terbaik){ return terbaik.a; }
+    return "Maaf, koneksi ke asisten AI sedang bermasalah. Coba tanya soal cara memilih jurusan, perbandingan Saintek/Soshum, SMA vs SMK, atau klik salah satu topik cepat di bawah.";
+  }
+
+  // Konteks halaman ini dikirim sebagai system prompt supaya AI paham topik & gaya bicara yang diharapkan
+  const SYSTEM_PROMPT = `Kamu adalah "Ruang Tanya", asisten AI ramah di sebuah website edukasi bertema Edutech Indonesia
+(dibuat oleh Kelompok 5 Kewirausahaan, studi kasus sektor Edutech: Ruangguru, Zenius, Quipper).
+
+Tugasmu: menjawab APAPUN pertanyaan pengunjung, terutama seputar:
+- Cara memilih jurusan kuliah atau peminatan SMA/SMK
+- Perbedaan Saintek vs Soshum, MIPA vs IPS vs Bahasa
+- Perbedaan SMA vs SMK, jurusan-jurusan SMK (RPL, TKJ, Akuntansi, dll)
+- Prospek kerja berbagai jurusan (IT, kedokteran, seni/desain, dll)
+- Cara belajar efektif, tryout, UTBK, beasiswa, biaya kuliah
+- Platform edutech (Ruangguru, Zenius, Quipper) dan fitur-fiturnya secara umum
+- Pertanyaan random/di luar topik di atas TETAP boleh dijawab secara wajar, jangan menolak,
+  tapi kalau relevan arahkan kembali ke topik jurusan/pendidikan dengan halus.
+
+Gaya bicara: santai, akrab, seperti kakak kelas yang membantu adik kelasnya (pakai "kamu", boleh pakai bahasa gaul ringan
+seperti "gimana", "banget", "nih"), TIDAK kaku/formal. Jawaban singkat-padat, maksimal sekitar 3-5 kalimat kecuali
+pertanyaannya memang butuh penjelasan lebih panjang. Jangan pakai format markdown seperti tanda bintang (**bold**), tulis
+sebagai teks biasa saja karena akan ditampilkan di bubble chat sederhana.`;
+
+  let riwayatChat = []; // menyimpan histori percakapan supaya AI ingat konteks obrolan sebelumnya
+
+  function tambahPesan(teks, peran){
+    const win = document.getElementById('chatWindow');
+    const div = document.createElement('div');
+    div.className = "msg " + peran;
+    div.textContent = teks;
+    win.appendChild(div);
+    win.scrollTop = win.scrollHeight;
+    return div;
+  }
+
+  function tampilkanTyping(){
+    const win = document.getElementById('chatWindow');
+    const div = document.createElement('div');
+    div.className = "msg bot typing";
+    div.id = "typingIndicator";
+    div.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+    win.appendChild(div);
+    win.scrollTop = win.scrollHeight;
+  }
+
+  function hapusTyping(){
+    const el = document.getElementById('typingIndicator');
+    if(el){ el.remove(); }
+  }
+
+  async function tanyaAI(pertanyaan){
+    try{
+     const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pesan: pertanyaan })
+      });
+      const data = await response.json();
+      
+      // PASTIKAN BARIS INI TERTULIS data.jawaban
+      return data.jawaban; 
+      
+    }catch(err){
+      console.error("Gagal terhubung ke backend:", err);
+      return cariJawabanCadangan(pertanyaan);
+    }
+  }
+
+  async function prosesPertanyaan(teks){
+    if(!teks || !teks.trim()){ return; }
+    tambahPesan(teks, "user");
+    tampilkanTyping();
+
+    const jawaban = await tanyaAI(teks);
+
+    hapusTyping();
+    tambahPesan(jawaban, "bot");
+
+    riwayatChat.push({ role: "user", content: teks });
+    riwayatChat.push({ role: "assistant", content: jawaban });
+    // Batasi histori supaya request tidak makin membengkak
+    if(riwayatChat.length > 12){ riwayatChat = riwayatChat.slice(-12); }
+  }
+
+  function kirimChat(){
+    const input = document.getElementById('chatInput');
+    const btn = document.querySelector('.chat-input-row button');
+    const teks = input.value;
+    if(!teks || !teks.trim()){ return; }
+    input.value = "";
+    input.disabled = true;
+    if(btn){ btn.disabled = true; }
+    prosesPertanyaan(teks).finally(function(){
+      input.disabled = false;
+      if(btn){ btn.disabled = false; }
+      input.focus();
+    });
+  }
+
+  function tanyaCepat(teks){
+    prosesPertanyaan(teks);
+  }
+</script>
+
+<script>
+  let jenjangAktif = "kuliah";
+
+  const TEKS_JENJANG = {
+    kuliah: {
+      title: "Bingung mau ambil jurusan apa?",
+      desc: "Ini contoh fitur yang biasa ditemukan di platform edutech seperti Ruangguru, Zenius, dan Quipper: kuis singkat untuk membantu siswa menemukan jurusan kuliah yang cocok berdasarkan minat, bukan ikut-ikutan teman. Jawab 5 pertanyaan berikut."
+    },
+    sma: {
+      title: "Bingung mau masuk SMA atau SMK?",
+      desc: "Sebelum daftar ke jenjang menengah atas, coba kenali dulu minatmu. Kuis ini membantu kamu melihat kira-kira peminatan SMA (MIPA/IPS/Bahasa) atau jurusan SMK apa yang paling sesuai. Jawab 5 pertanyaan berikut."
+    }
+  };
+
+  function pilihJenjang(level){
+    jenjangAktif = level;
+    document.querySelectorAll('.lvl-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-level') === level);
+    });
+    document.getElementById('quizTitle').textContent = TEKS_JENJANG[level].title;
+    document.getElementById('quizDesc').textContent = TEKS_JENJANG[level].desc;
+    document.getElementById('quizResult').style.display = "none";
+    const hint = document.getElementById('quizHint');
+    hint.textContent = "Jawab dulu kelima pertanyaan di atas.";
+    hint.style.color = "#8B93AE";
+  }
+
+  const HASIL_KULIAH = {
+    saintek: {
+      title: "Rumpun Saintek & Teknik",
+      desc: "Kamu kuat di logika, angka, dan suka memecahkan masalah secara sistematis — cocok untuk jurusan yang menuntut ketelitian dan analisis kuantitatif.",
+      chips: ["Teknik Sipil","Teknik Elektro","Matematika","Fisika","Teknik Mesin"]
+    },
+    soshum: {
+      title: "Rumpun Sosial, Ekonomi & Bisnis",
+      desc: "Kamu senang memimpin, berdiskusi soal isu sosial atau bisnis, dan pandai meyakinkan orang — cocok untuk jurusan yang berkaitan dengan manusia, kebijakan, dan pasar.",
+      chips: ["Manajemen","Ilmu Ekonomi","Hubungan Internasional","Ilmu Hukum","Ilmu Komunikasi"]
+    },
+    bahasa: {
+      title: "Rumpun Bahasa & Komunikasi",
+      desc: "Kamu jago menulis, membaca, dan berbicara di depan umum — cocok untuk jurusan yang mengandalkan kemampuan bahasa dan penyampaian ide.",
+      chips: ["Sastra Inggris","Pendidikan Bahasa","Hubungan Internasional","Jurnalistik","Linguistik"]
+    },
+    seni: {
+      title: "Rumpun Seni, Desain & Kreatif",
+      desc: "Kamu punya selera visual yang kuat dan senang menciptakan sesuatu yang estetis — cocok untuk jurusan yang mengasah kreativitas dan karya visual.",
+      chips: ["Desain Komunikasi Visual","Seni Rupa","Arsitektur","Desain Produk","Film & Televisi"]
+    },
+    tekno: {
+      title: "Rumpun Teknologi & Data",
+      desc: "Kamu suka ngoprek sistem, aplikasi, dan teknologi — cocok untuk jurusan yang berkembang pesat mengikuti dunia digital.",
+      chips: ["Ilmu Komputer","Sistem Informasi","Teknik Informatika","Data Science","Game Development"]
+    },
+    kesehatan: {
+      title: "Rumpun Kesehatan",
+      desc: "Kamu sabar, peduli, dan tertarik merawat makhluk hidup — cocok untuk jurusan yang berorientasi menolong dan menjaga kesehatan orang lain.",
+      chips: ["Kedokteran","Keperawatan","Farmasi","Gizi","Kesehatan Masyarakat"]
+    }
+  };
+
+  const HASIL_SMA = {
+    saintek: {
+      title: "SMA — Peminatan MIPA",
+      desc: "Kamu kuat di logika dan angka — peminatan MIPA di SMA cocok buatmu, dengan porsi Matematika, Fisika, Kimia, dan Biologi yang lebih dalam, dan jadi bekal kalau nanti mau ke Saintek atau Kedokteran.",
+      chips: ["Matematika Peminatan","Fisika","Kimia","Biologi"]
+    },
+    soshum: {
+      title: "SMA — Peminatan IPS",
+      desc: "Kamu suka isu sosial, ekonomi, dan diskusi — peminatan IPS cocok buatmu, dengan fokus ke Ekonomi, Sosiologi, dan Geografi sebagai bekal ke jurusan sosial atau bisnis nanti.",
+      chips: ["Ekonomi","Sosiologi","Geografi","Sejarah Peminatan"]
+    },
+    bahasa: {
+      title: "SMA — Peminatan Bahasa",
+      desc: "Kamu jago berbahasa dan senang menulis atau bicara di depan umum — peminatan Bahasa & Budaya cocok buatmu kalau tersedia di sekolahmu, atau kamu tetap bisa memperdalamnya lewat IPS/MIPA sambil aktif di ekskul bahasa.",
+      chips: ["Bahasa & Sastra Indonesia","Bahasa Inggris","Antropologi","Bahasa Asing Lain"]
+    },
+    seni: {
+      title: "SMK — Seni, Desain & Multimedia",
+      desc: "Kamu kuat di sisi visual dan kreativitas — jurusan SMK seperti Multimedia atau Desain Komunikasi Visual cocok buatmu, karena langsung melatih kemampuan praktik desain sejak SMA.",
+      chips: ["Multimedia","Desain Komunikasi Visual","Animasi","Tata Busana"]
+    },
+    tekno: {
+      title: "SMK — Teknologi Informasi",
+      desc: "Kamu suka ngoprek sistem dan teknologi — jurusan SMK seperti Rekayasa Perangkat Lunak atau Teknik Komputer & Jaringan cocok buatmu, karena langsung fokus praktik coding dan jaringan.",
+      chips: ["Rekayasa Perangkat Lunak","Teknik Komputer & Jaringan","Sistem Informasi Jaringan","Teknik Elektronika"]
+    },
+    kesehatan: {
+      title: "SMK — Kesehatan & Sosial",
+      desc: "Kamu sabar dan peduli sama orang lain — jurusan SMK seperti Keperawatan atau Farmasi cocok buatmu, karena langsung membekali keterampilan praktik di bidang kesehatan sejak SMA.",
+      chips: ["Keperawatan","Farmasi","Tata Boga","Perhotelan"]
+    }
+  };
+
+  function hitungJurusan(){
+    const qs = ["q1","q2","q3","q4","q5"];
+    const skor = {};
+    let terjawab = 0;
+    qs.forEach(function(q){
+      const el = document.querySelector('input[name="'+q+'"]:checked');
+      if(el){
+        terjawab++;
+        skor[el.value] = (skor[el.value] || 0) + 1;
+      }
+    });
+
+    const hint = document.getElementById('quizHint');
+    if(terjawab < 5){
+      hint.textContent = "Masih ada " + (5 - terjawab) + " pertanyaan yang belum dijawab.";
+      hint.style.color = "#F2B134";
+      return;
+    }
+
+    let top = null, topScore = -1;
+    Object.keys(skor).forEach(function(k){
+      if(skor[k] > topScore){ topScore = skor[k]; top = k; }
+    });
+
+    const HASIL = jenjangAktif === "sma" ? HASIL_SMA : HASIL_KULIAH;
+    const hasil = HASIL[top];
+    document.getElementById('rTitle').textContent = hasil.title;
+    document.getElementById('rDesc').textContent = hasil.desc;
+    const chipsEl = document.getElementById('rChips');
+    chipsEl.innerHTML = "";
+    hasil.chips.forEach(function(c){
+      const span = document.createElement('span');
+      span.className = "r-chip";
+      span.textContent = c;
+      chipsEl.appendChild(span);
+    });
+    document.getElementById('quizResult').style.display = "block";
+    hint.textContent = "Hasil diperbarui — coba ubah jawaban untuk membandingkan.";
+    hint.style.color = "#8B93AE";
+    document.getElementById('quizResult').scrollIntoView({behavior:"smooth", block:"nearest"});
+  }
+</script>
+
+</body>
+</html>
